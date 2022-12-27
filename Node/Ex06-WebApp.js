@@ -1,6 +1,7 @@
 const http=require('http');
 const fs =require('fs');
 const httpParse=require('url').parse;
+const querystring=require('querystring');
 const dir=__dirname; //const for the current directory of the application.
 
 function displayPage(res,url){
@@ -29,8 +30,14 @@ http.createServer((req,res)=>{
         return;
         }
     } else if(req.method=="POST"){
+        let postedData="";
         req.on("data" ,function(inputs){ //data(predefined) is an event triggered when the page is posted
-            res.write(inputs);
+            postedData += inputs;
+        })
+        req.on("end",function(){
+            let post =querystring.parse(postedData);
+            const msg=`Thanks Mr.${post['txtName']} for registering with Us! UR EMail ${post['txtEmail']} is registered and will be contacted`;
+            res.write(msg);
             res.end();
             return;
         })
@@ -38,7 +45,7 @@ http.createServer((req,res)=>{
     switch(req.url){
         case "/favicon.ico": {
          res.end();
-         break;
+         return;
         }
         case "/Register":
             displayPage(res,req.url);
