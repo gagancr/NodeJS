@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <style>
+         .jumbotron{
+            padding: 50px;
+            margin:25px;
+            font-size: 40pt;
+            color :rgb(42, 73, 11);
+            background-color: azure;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="formPost">
+      
+      <div class="col-md-5">
+        <header>
+        <h2>
+            Enter the details of the books to Add
+        </h2>
+        <hr>
+    </header>
+        <div>
+            <p>Enter the ID: <input  class="form-control" placeholder= "Enter the id of the book" type="number" name="id"></p>
+            <p>Enter the Book Name: <input  class="form-control" placeholder="enter the name of the book" type="text" name="name"></p>
+            <p>Enter the Price: <input  class="form-control" placeholder="enter the price of the book" type="number" name="price"></p>
+            <p>Enter the Author: <input  class="form-control" placeholder="enter the author of the book" type="text" name="author"></p>
+            <p><button class="btn btn-primary" >Post Data</button></p>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

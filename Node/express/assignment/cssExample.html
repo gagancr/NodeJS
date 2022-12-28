@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script src="./jquery.lib.js"></script>
+    <style>
+        .jumbotron{
+            padding: 50px;
+            margin:25px;
+            font-size: 40pt;
+            color :rgb(42, 73, 11);
+            background-color: azure;
+            text-align: center
+        }
+    </style>
+    <title>Document</title>
+    <script>
+        const url = "http://localhost:3000/Books"
+            function createRow(book) {
+                const row = `<tr><td>${book.id}</td>
+                <td>${book.bookTitle}</td>
+                <td>${book.price}</td>
+                <td>${book.author}</td>
+                <td>Edit</td></tr>`;
+                return row;
+            }
+            function getAllRecords() {
+                $("table").find("tr.gt(0)").remove();
+                $.get(url, function (data) {
+                    for (const bk of data) {
+                        let row = createRow(bk);
+                        $("table").append(row);
+                    }
+
+                })
+            }
+        $().ready(function(){
+            $("a.btn:first").click(getAllRecords)
+        })
+    </script>
+</head>
+<body>
+    <h1 class="jumbotron">Book store App!</h1>
+    <hr>
+    <nav class="nav nav-bar">
+        <ul>
+            <li><a href="#">details</a>
+               
+            </li>
+        </ul>
+    </nav>
+    <div class="container container-fluid text-primary">
+        <div class="row">
+            <div class="col-md-7">
+                    <header>
+                            <h2 class="h2">Books with Us!!!</h2>
+                            <hr>
+                        </header>
+                        <div>
+                            <table class="table table-bordered table-striped table-hover" border="1">
+                                <tr>
+                                    <th>Book ID</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </table>
+                        </div>     
+            </div>
+            <div class="col-md-5">
+                    <header>
+                            <h2> Add New Book</h2>
+                            <hr>
+                        </header>
+                        <div>
+                            <p>
+                                Enter the ID: <input class="form-control" placeholder="ID of the Book" />
+                            </p>
+                            <p>
+                                Enter the Title: <input class="form-control" placeholder="Title" />
+                            </p>
+                            <p>
+                                Enter the Author: <input class="form-control" placeholder="Author" />
+                            </p>
+                            <p>
+                                Enter the Price: <input class="form-control" placeholder="Price" />
+                            </p>
+                            <p>
+                                <button class="btn btn-primary">Add Book</button>
+                            </p>
+                        </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
